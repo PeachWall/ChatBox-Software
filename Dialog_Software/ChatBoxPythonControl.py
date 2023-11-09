@@ -12,22 +12,13 @@ import google.cloud.dialogflow_v2 as dialogflow
 import serial
 import time
 from playsound import playsound
-# import pyfirmata2     # Not in use
-# import pyaudio        # Not in use
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import speech_recognition as speech
 from google.api_core.exceptions import InvalidArgument
+from dotenv import load_dotenv
 
 # initialising sentiment analyser
 sid_obj = SentimentIntensityAnalyzer()
-
-# Simplify intents
-# intentDict = {
-#     "CheckinIntent": "Check",
-#     "SmallTalkIntent": "SmallTalk",
-#     "Default Welcome Intent": "Welcome",
-#     "Default Fallback Intent": "Fallback"
-# }
 
 # Serial setup
 serialComm = serial.Serial('COM9', 9600)
@@ -53,6 +44,7 @@ r = speech.Recognizer()
 audio_text = 'empty'
 voiceInput = ''
 
+load_dotenv()
 
 # speaking
 def speak(text):
@@ -86,7 +78,11 @@ def listen():
 
 # Sending the data off to dialog flow and receiving an input
 def understand():
-    # Connect with Google dialogflow
+    GOOGLE_APPLICATION_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+    DIALOGFLOW_PROJECT_ID = os.getenv('DIALOGFLOW_PROJECT_ID')
+    DIALOGFLOW_LANGUAGE_CODE = os.getenv('DIALOGFLOW_LANGUAGE_CODE')
+    SESSION_ID = os.getenv('SESSION_ID')
+    
     global voiceInput
     # json key
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'private_key.json'
