@@ -2,4 +2,4 @@
 .env
 
 # Ignore secrets directory
-secrets/
+keys/
