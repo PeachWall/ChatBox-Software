@@ -12,7 +12,15 @@ It contains Python scripts for Dialogflow interactions and Arduino .ino files fo
 
 4. Once you have your API key, create a new file in the root directory of this project named `.env`.
 
-5. Inside the `.env` file, add the following line: `DIALOGFLOW_API_KEY=your_api_key`. Replace `your_api_key` with the API key you obtained from Dialogflow.
+5. Inside the `.env` file, add the following: 
+
+    # Dialogflow API credentials
+    GOOGLE_APPLICATION_CREDENTIALS = your_google_credentials_here
+
+    # Dialogflow API settings
+    DIALOGFLOW_PROJECT_ID          = your_project_id_here
+    DIALOGFLOW_LANGUAGE_CODE       = your_language_code
+    SESSION_ID                     = your_session_id
 
 6. Save the `.env` file. The Python scripts in this project are set up to read the API key from this file, so you should now be able to use the Dialogflow functions.
 
